@@ -1,0 +1,46 @@
+rabbitmq:
+  image: tutum/rabbitmq
+  environment:
+    RABBITMQ_USER: NI4EvqdOy3RT
+    RABBITMQ_PASS: aEW5qDg3qPBh
+  restart: always
+
+redis:
+  image: tutum/redis
+  environment:
+    REDIS_PASS: WQuxUloeZomF
+  restart: always
+
+server:
+  image: anroots/sensu-server:example
+  links:
+    - rabbitmq
+    - redis
+  restart: always
+
+client:
+  image: anroots/sensu-client:example
+  links:
+    - rabbitmq
+  restart: always
+
+api:
+  image: anroots/sensu-api
+  links:
+    - rabbitmq
+    - redis
+  environment:
+    API_USER: 2RXlri2xmx5i
+    API_PASS: jrHVKNuM8Zw4
+  restart: always
+
+uchiwa:
+  image: anroots/uchiwa
+  links:
+    - api
+  ports:
+    - 3000:80
+  environment:
+    HTTP_USER: hiro
+    HTTP_PASS: nakamura
+  restart: always

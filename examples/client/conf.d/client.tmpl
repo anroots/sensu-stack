@@ -1,0 +1,32 @@
+{
+  "client":{
+    "name":"{{ if .Env.TUTUM_NODE_FQDN }}{{ .Env.TUTUM_NODE_FQDN }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
+    "address":"{{ if .Env.TUTUM_IP_ADDRESS }}{{ .Env.TUTUM_IP_ADDRESS }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
+    "subscriptions":[
+      "all"
+    ]
+  },
+  "checks":{
+    "memory-usage":{
+      "command":"check-memory-percent.rb -w 70 -c 85",
+      "standalone":true,
+      "occurrences":2,
+      "publish":true,
+      "interval":10
+    },
+    "cpu-usage":{
+      "command":"check-cpu.rb -w 70 -c 85",
+      "standalone":true,
+      "occurrences":3,
+      "publish":true,
+      "interval":10
+    },
+    "disk-usage":{
+      "command":"check-disk-usage.rb -w 70 -c 85 -K 85 -W 70",
+      "standalone":true,
+      "occurrences":2,
+      "publish":true,
+      "interval":60
+    }
+  }
+}

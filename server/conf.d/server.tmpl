@@ -1,0 +1,23 @@
+{
+  "rabbitmq":{
+    "host":"{{ .Env.RABBITMQ_PORT_5672_TCP_ADDR }}",
+    "user":"{{ .Env.RABBITMQ_ENV_RABBITMQ_USER }}",
+    "password":"{{ .Env.RABBITMQ_ENV_RABBITMQ_PASS }}"
+  },
+  "redis":{
+    "host":"{{ .Env.REDIS_PORT_6379_TCP_ADDR }}",
+    "password":"{{ .Env.REDIS_ENV_REDIS_PASS }}"
+  },
+  "handlers":{
+    "default":{
+      "type":"set",
+      "handlers":[
+        "stdout"
+      ]
+    },
+    "stdout":{
+      "type":"pipe",
+      "command":"cat"
+    }
+  }
+}

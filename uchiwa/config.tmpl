@@ -1,0 +1,19 @@
+{
+  "sensu":[
+    {
+      "name":"{{ .Env.SENSU_NAME }}",
+      "host":"{{ .Env.API_PORT_4567_TCP_ADDR }}",
+      "port":{{ .Env.API_PORT_4567_TCP_PORT }},
+      "user":"{{ .Env.API_ENV_API_USER }}",
+      "pass":"{{ .Env.API_ENV_API_PASS }}"
+    }
+  ],
+  "uchiwa":{
+    "host":"0.0.0.0",
+    "port":80,
+    "refresh":5,
+    "user":"{{ .Env.HTTP_USER }}",
+    "pass":"{{ .Env.HTTP_PASS }}",
+    "readonly": {{ default .Env.UCHIWA_READONLY "false"}}
+  }
+}
