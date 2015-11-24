@@ -1,6 +1,6 @@
 FROM anroots/sensu
 
-ENV TUTUM_NODE_FQDN= TUTUM_IP_ADDRESS=
+ENV TUTUM_NODE_FQDN= TUTUM_IP_ADDRESS= SUBSCRIPTIONS=
 
 # Ruby and gem are installed because a lot of
 # Sensu checks and handlers are written in Ruby and installable via Gem.

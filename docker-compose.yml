@@ -22,6 +22,9 @@ client:
   image: anroots/sensu-client:example
   links:
     - rabbitmq
+  environment:
+    # Specify Sensu subscriptions for the client as a CSV string
+    SUBSCRIPTIONS: development,web
   restart: always
 
 api:
