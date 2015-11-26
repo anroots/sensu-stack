@@ -22,7 +22,6 @@ script:
   # Validate JSON files
   - jsonlint api/conf.d/api.tmpl -q
   - jsonlint client/conf.d/rabbitmq.tmpl -q
-  - jsonlint examples/client/conf.d/client.tmpl -q
   - jsonlint examples/server/conf.d/internet-connection.json -q
   - jsonlint server/conf.d/server.tmpl -q
   
