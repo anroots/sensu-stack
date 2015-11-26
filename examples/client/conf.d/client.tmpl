@@ -1,0 +1,9 @@
+{
+  "client":{
+    "name":"{{ if .Env.TUTUM_NODE_FQDN }}{{ .Env.TUTUM_NODE_FQDN }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
+    "address":"{{ if .Env.TUTUM_IP_ADDRESS }}{{ .Env.TUTUM_IP_ADDRESS }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
+    "subscriptions":[
+      "all"{{if .Env.SUBSCRIPTIONS}}{{$subscriptions := split .Env.SUBSCRIPTIONS ","}}{{ range $subscription := $subscriptions }},"{{ $subscription }}"{{end}}{{end}}
+    ]
+  }
+}
