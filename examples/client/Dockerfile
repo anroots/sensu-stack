@@ -1,7 +1,7 @@
 FROM anroots/sensu-client
 
 RUN apt-get update && \
-	apt-get install -y bc && \
+	apt-get install -y bc build-essential && \
 	gem install sensu-plugins-memory-checks sensu-plugins-cpu-checks sensu-plugins-disk-checks && \
 	apt-get clean -y && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

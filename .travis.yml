@@ -24,7 +24,7 @@ script:
   - jsonlint client/conf.d/rabbitmq.tmpl -q
   - jsonlint examples/server/conf.d/internet-connection.json -q
   - jsonlint server/conf.d/server.tmpl -q
-  
+
   # Validate Yaml files
   - js-yaml docker-compose.yml > /dev/null
   - js-yaml tutum.yml > /dev/null
