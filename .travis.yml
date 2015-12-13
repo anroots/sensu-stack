@@ -13,8 +13,9 @@ script:
  # Validate Docker files
   - dockerfile_lint -f api/Dockerfile
   - dockerfile_lint -f client/Dockerfile
-  - dockerfile_lint -f examples/client/Dockerfile
-  - dockerfile_lint -f examples/server/Dockerfile
+  - dockerfile_lint -f client/example/Dockerfile
+  - dockerfile_lint -f client/nagios/Dockerfile
+  - dockerfile_lint -f server/example/Dockerfile
   - dockerfile_lint -f sensu/Dockerfile
   - dockerfile_lint -f server/Dockerfile
   - dockerfile_lint -f uchiwa/Dockerfile
@@ -22,7 +23,7 @@ script:
   # Validate JSON files
   - jsonlint api/conf.d/api.tmpl -q
   - jsonlint client/conf.d/rabbitmq.tmpl -q
-  - jsonlint examples/server/conf.d/internet-connection.json -q
+  - jsonlint server/example/conf.d/internet-connection.json -q
   - jsonlint server/conf.d/server.tmpl -q
 
   # Validate Yaml files
