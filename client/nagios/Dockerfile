@@ -21,7 +21,6 @@ RUN apt-get update && \
 # Install nagios plugins and its dependencies
 # This takes 10...20 minutes to run and results in ~350MB of space used
 RUN mkdir /opt/nagios && \
-	cd /opt/nagios && \
-	git clone https://github.com/harisekhon/nagios-plugins.git plugins && \	
+	git clone https://github.com/harisekhon/nagios-plugins.git /opt/nagios/plugins && \
 	cd /opt/nagios/plugins && \
 	make
