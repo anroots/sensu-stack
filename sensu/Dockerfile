@@ -1,8 +1,6 @@
 FROM debian
 MAINTAINER Ando Roots <ando@sqroot.eu>
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # Install Sensu repo key
 COPY sensu.key.gpg /tmp/
 
