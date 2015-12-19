@@ -32,15 +32,16 @@ The default configuration maps the Uchiwa frontend to [http://localhost:3000](ht
 
 ### Add Your Own Checks
 
-Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in the [examples](examples) directory.
+Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in [server/example](server/example) and [client/example](client/example) directories.
 
-## Project Structure
+## Image Structure
 
 - `debian`
   - `anroots/sensu` - base image for Sensu
     - `anroots/sensu-api`
     - `anroots/sensu-client` - barebones setup for Sensu client (no checks)
       - `anroots/sensu-client:example` - Sensu client which includes basic host-level checks (memory, CPU, disk usage)
+        - `anroots/sensu-client:nagios` - Sensu client that includes a huge library of [nagios-plugins](https://github.com/harisekhon/nagios-plugins)
     - `anroots/sensu-server` - barebones setup for Sensu server (no checks)
       - `anroots/sensu-client:example` - Sensu server with one scheduled check
 - `uchiwa/uchiwa`
