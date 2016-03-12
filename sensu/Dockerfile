@@ -12,8 +12,7 @@ RUN apt-key add /tmp/sensu.key.gpg && \
 	apt-get install -y sensu && \
 	apt-get clean -y && \
 	rm -rf /var/lib/apt/lists/* /var/lib/cache/* /var/log/apt/* /tmp/* /var/tmp/* && \
-	rm /etc/sensu/config.json.example && \
-	echo "EMBEDDED_RUBY=true" > /etc/default/sensu
+	rm /etc/sensu/config.json.example
 
 # Update PATH to include the embedded Ruby shipped with Sensu
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/sensu/embedded/bin
@@ -23,4 +22,4 @@ RUN echo "install: --no-rdoc --no-ri" >> /etc/gemrc
 
 # Dockerize is used to generate config files
 # by replacing placeholders with values from the environment
-COPY dockerize-0.0.4 /usr/local/bin/dockerize
+COPY dockerize-0.2.0 /usr/local/bin/dockerize
