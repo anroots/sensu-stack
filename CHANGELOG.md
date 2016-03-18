@@ -9,6 +9,7 @@ All Notable changes to `anroots/sensu-*` will be documented in this file. The pr
 - Upgrade Dockerize from 0.0.4 to 0.2.0
 - Upgrade Sensu to 0.22.2
 - Rename `TUTUM_` environment variables to `DOCKERCLOUD_`
+- Add `-wait` parameter to startup: wait for Redis, Api and Rabbitmq to become available before starting Sensu
 
 ## 0.1.0 - 2015-12-19
 
