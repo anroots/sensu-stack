@@ -9,4 +9,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/v0.0.4/dockerize
 	mkdir /etc/uchiwa
 
 COPY config.tmpl /etc/uchiwa/
-CMD dockerize -template /etc/uchiwa/config.tmpl:/etc/uchiwa/config.json /go/bin/app -c /etc/uchiwa/config.json
+CMD dockerize -template /etc/uchiwa/config.tmpl:/etc/uchiwa/config.json \
+	-wait tcp://$API_PORT_4567_TCP_ADDR:$API_PORT_4567_TCP_PORT \
+	/go/bin/app -c /etc/uchiwa/config.json

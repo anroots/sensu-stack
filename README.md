@@ -6,13 +6,13 @@ This is the [Sensu monitoring framework](https://sensuapp.org), running in Docke
 
 ## Install
 
-This project is opinionated towards [Tutum](https://tutum.co) deployment.
+This project is opinionated towards [Docker Cloud](https://cloud.docker.com) deployment.
 
-### Deploy to Tutum
+### Deploy to Docker Cloud
 
-Press the button below to deploy this [stackfile](https://stackfiles.io/registry/56477c358ba74c01008d72f1) to your Tutum account.
+Press the button below to deploy this [stackfile](https://docs.docker.com/docker-cloud/feature-reference/stacks/) to your Docker Cloud account.
 
-[![Deploy to Tutum](https://s.tutum.co/deploy-to-tutum.svg)](https://dashboard.tutum.co/stack/deploy/?repo=https://github.com/anroots/sensu-stack)
+[![Deploy to Docker Cloud](https://files.cloud.docker.com/images/deploy-to-dockercloud.svg)](https://cloud.docker.com/stack/deploy)
 
 ### Deploy to Other Docker Capable Hosts
 
