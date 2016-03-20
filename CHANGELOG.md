@@ -13,6 +13,7 @@ All Notable changes to `anroots/sensu-*` will be documented in this file. The pr
 - [#4][] Upgrade Sensu from `0.20.3` to `0.22.0`. Installation method changed from the official Sensu repository to downloading a .deb due to the repository having an outdated version of Sensu
 - [#4][] Rename `TUTUM_` environment variables to `DOCKERCLOUD_`
 - [#4][] Add `-wait` parameter to startup: wait for Redis, Api and Rabbitmq to become available before starting Sensu
+- [#4][] Use `sensu-install` to install plugins to the `anroots/sensu-client:example` image
 
 ## 0.1.0 - 2015-12-19
 

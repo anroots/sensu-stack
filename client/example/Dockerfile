@@ -1,8 +1,11 @@
 FROM anroots/sensu-client
 
+# Install sensu plugins that perform system resource checks
 RUN apt-get update && \
 	apt-get install -y bc build-essential && \
-	gem install sensu-plugins-memory-checks sensu-plugins-cpu-checks sensu-plugins-disk-checks && \
+	sensu-install --verbose -p memory-checks cpu-checks disk-checks && \
+	apt-get purge -y build-essential && \
+	apt-get autoremove -y && \
 	apt-get clean -y && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
