@@ -6,13 +6,13 @@ This is the [Sensu monitoring framework](https://sensuapp.org), running in Docke
 
 ## Install
 
-This project is opinionated towards [Tutum](https://tutum.co) deployment.
+This project is opinionated towards [Docker Cloud](https://cloud.docker.com) deployment.
 
-### Deploy to Tutum
+### Deploy to Docker Cloud
 
-Press the button below to deploy this [stackfile](https://stackfiles.io/registry/56477c358ba74c01008d72f1) to your Tutum account.
+Press the button below to deploy this [stackfile](https://docs.docker.com/docker-cloud/feature-reference/stacks/) to your Docker Cloud account.
 
-[![Deploy to Tutum](https://s.tutum.co/deploy-to-tutum.svg)](https://dashboard.tutum.co/stack/deploy/?repo=https://github.com/anroots/sensu-stack)
+[![Deploy to Docker Cloud](https://files.cloud.docker.com/images/deploy-to-dockercloud.svg)](https://cloud.docker.com/stack/deploy)
 
 ### Deploy to Other Docker Capable Hosts
 
@@ -32,7 +32,7 @@ The default configuration maps the Uchiwa frontend to [http://localhost:3000](ht
 
 ### Add Your Own Checks
 
-Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in [server/example](server/example) and [client/example](client/example) directories.
+Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in [server/example](server/example) and [client/example](client/example) directories. Official documentation on checks can be read [here](https://sensuapp.org/docs/latest/checks).
 
 ## Image Structure
 
@@ -41,11 +41,62 @@ Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configu
     - `anroots/sensu-api`
     - `anroots/sensu-client` - barebones setup for Sensu client (no checks)
       - `anroots/sensu-client:example` - Sensu client which includes basic host-level checks (memory, CPU, disk usage)
-        - `anroots/sensu-client:nagios` - Sensu client that includes a huge library of [nagios-plugins](https://github.com/harisekhon/nagios-plugins)
     - `anroots/sensu-server` - barebones setup for Sensu server (no checks)
       - `anroots/sensu-client:example` - Sensu server with one scheduled check
 - `uchiwa/uchiwa`
   - `anroots/uchiwa`
+
+### Sending Alerts
+
+This image does not come with built-in event handlers - you'll have to choose and configure one yourself. Documentation on handlers can be found [here](https://sensuapp.org/docs/latest/getting-started-with-handlers).
+
+#### E-mail Handler
+
+The following is an example on how to configure Sensu to send e-mails on failing checks.
+
+First of all, we need to install a handler to the Sensu server. Extend `anroots/sensu-server` and install the e-mail handler:
+
+```
+# Dockerfile
+FROM anroots/sensu-server:example
+RUN sensu-install -p mailer
+COPY mail.json /etc/sensu/conf.d/
+```
+
+Next, add the settings of the e-mail server to use:
+
+```json
+# mail.json
+{
+  "mailer": {
+    "mail_from": "server@sensu.sqroot.eu",
+    "mail_to": "ando@sqroot.eu",
+    "smtp_address": "smtp.mailgun.org",
+    "smtp_port": "587",
+    "smtp_domain": "sensu.sqroot.eu",
+    "smtp_username": "postmaster@sensu.sqroot.eu",
+    "smtp_password": "<password>"
+  }
+}
+```
+
+Finally, tell Sensu that the handler exists. It can either be a default handler for all checks or specified on per-check basis.
+
+```json
+# Override handlers specified in server.tmpl
+"handlers":{
+  "default":{
+    "type":"set",
+    "handlers":[
+      "mail"
+    ]
+  },
+  "mail":{
+    "type": "pipe",
+    "command": "handler-mailer.rb"
+  }
+}
+```
 
 ## Change Log
 

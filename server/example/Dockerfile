@@ -1,6 +1,3 @@
 FROM anroots/sensu-server
 
 COPY conf.d /etc/sensu/conf.d
-
-CMD dockerize -template /etc/sensu/conf.d/server.tmpl:/etc/sensu/conf.d/config.json \
-	/opt/sensu/bin/sensu-server -d /etc/sensu/conf.d

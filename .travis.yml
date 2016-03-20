@@ -28,4 +28,4 @@ script:
 
   # Validate Yaml files
   - js-yaml docker-compose.yml > /dev/null
-  - js-yaml tutum.yml > /dev/null
+  - js-yaml docker-cloud.yml > /dev/null

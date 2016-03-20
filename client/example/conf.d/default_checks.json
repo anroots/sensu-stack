@@ -5,21 +5,21 @@
       "standalone":true,
       "occurrences":2,
       "publish":true,
-      "interval":10
+      "interval":30
     },
     "cpu-usage":{
       "command":"check-cpu.rb -w 70 -c 85",
       "standalone":true,
       "occurrences":3,
       "publish":true,
-      "interval":10
+      "interval":30
     },
     "disk-usage":{
       "command":"check-disk-usage.rb -w 70 -c 85 -K 85 -W 70",
       "standalone":true,
       "occurrences":2,
       "publish":true,
-      "interval":120
+      "interval":1800
     }
   }
 }
