@@ -3,7 +3,7 @@ FROM anroots/sensu-client
 # Install sensu plugins that perform system resource checks
 RUN apt-get update && \
 	apt-get install -y bc build-essential && \
-	sensu-install --verbose -p memory-checks cpu-checks disk-checks && \
+	sensu-install --verbose -P memory-checks,cpu-checks,disk-checks && \
 	apt-get purge -y build-essential && \
 	apt-get autoremove -y && \
 	apt-get clean -y && \
