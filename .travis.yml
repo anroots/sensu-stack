@@ -11,14 +11,14 @@ before_install:
 script:
 
  # Validate Docker files
-  - dockerfile_lint -f api/Dockerfile
-  - dockerfile_lint -f client/Dockerfile
-  - dockerfile_lint -f client/example/Dockerfile
-  - dockerfile_lint -f client/nagios/Dockerfile
-  - dockerfile_lint -f server/example/Dockerfile
-  - dockerfile_lint -f sensu/Dockerfile
-  - dockerfile_lint -f server/Dockerfile
-  - dockerfile_lint -f uchiwa/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f api/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f client/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f client/example/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f client/nagios/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f server/example/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f sensu/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f server/Dockerfile
+  - dockerfile_lint -r dockerfile_rules.yaml -f uchiwa/Dockerfile
 
   # Validate JSON files
   - jsonlint api/conf.d/api.tmpl -q
