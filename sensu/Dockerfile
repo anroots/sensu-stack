@@ -4,12 +4,12 @@ MAINTAINER Ando Roots <ando@sqroot.eu>
 # Install Sensu
 RUN apt-get update && \
 	apt-get install -y curl && \
-	curl -O https://core.sensuapp.com/apt/pool/sensu/main/s/sensu/sensu_0.22.0-1_amd64.deb && \
-	echo '00ad50b3b5ccaef23289bec35b89bea40525eea6 sensu_0.22.0-1_amd64.deb' >> sha1sums.txt && \
+	curl -O https://core.sensuapp.com/apt/pool/sensu/main/s/sensu/sensu_0.25.7-1_amd64.deb && \
+	echo '1ae485c98e1186be7fa218921fa9c8afb6f1aff8 sensu_0.25.7-1_amd64.deb' >> sha1sums.txt && \
 	sha1sum -c sha1sums.txt && \
-	dpkg -i sensu_0.22.0-1_amd64.deb && \
+	dpkg -i sensu_0.25.7-1_amd64.deb && \
 	apt-get clean -y && \
-	rm -rf /var/lib/apt/lists/* /etc/sensu/config.json.example sensu_0.22.0-1_amd64.deb sha1sums.txt
+	rm -rf /var/lib/apt/lists/* /etc/sensu/config.json.example sensu_0.25.7-1_amd64.deb sha1sums.txt
 
 # Update PATH to include the embedded Ruby shipped with Sensu
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/sensu/embedded/bin
