@@ -1,4 +1,4 @@
-FROM anroots/sensu
+FROM anroots/sensu:0.3.0
 
 ENV API_USER=WqNu4awAaNoP API_PASS=abcXvzSqoSw7
 EXPOSE 4567

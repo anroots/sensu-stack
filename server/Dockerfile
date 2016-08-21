@@ -1,4 +1,4 @@
-FROM anroots/sensu
+FROM anroots/sensu:0.3.0
 
 COPY conf.d /etc/sensu/conf.d/
 
