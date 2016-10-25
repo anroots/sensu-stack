@@ -32,7 +32,30 @@ The default configuration maps the Uchiwa frontend to [http://localhost:3000](ht
 
 ### Add Your Own Checks
 
-Extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in [server/example](server/example) and [client/example](client/example) directories. Official documentation on checks can be read [here](https://sensuapp.org/docs/latest/checks).
+You'll have to create your own Docker image and extend `anroots/sensu-client` and `anroots/sensu-server` to add your own configuration and checks. See Dockerfiles in [server/example](server/example) and [client/example](client/example) directories. Official documentation on checks can be read [here](https://sensuapp.org/docs/latest/checks).
+
+```Dockerfile
+FROM anroots/sensu-server:0.3.0
+
+COPY conf.d /etc/sensu/conf.d
+```
+
+### Add Your Own Plugins
+
+[sensu-plugins.io](http://sensu-plugins.io/) lists many Sensu plugins that can be used to perform different checks. To install a new plugin, create a new Docker image (extending `anroots/sensu-client`) and [install the plugins you want to use](https://github.com/anroots/sensu-stack/blob/master/client/example/Dockerfile#L6).
+
+```Dockerfile
+FROM anroots/sensu-client:0.3.0
+
+# Install sensu plugins that perform system resource checks
+RUN apt-get update && \
+	apt-get install -y bc build-essential && \
+	sensu-install --verbose -P memory-checks,cpu-checks,disk-checks && \
+	apt-get purge -y build-essential && \
+	apt-get autoremove -y && \
+	apt-get clean -y && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+```
 
 ## Image Structure
 
